@@ -104,6 +104,14 @@ go build
 
 *To leave the screen type CTRL+A and D*
 
+### Connection
+
+You can identify yourself to the panel with this ID :
+Login : Fondator
+Password : password
+
+**Please change it after the first connection !**
+
 ## FR
 
 ### Comment installer
@@ -206,6 +214,14 @@ go build
 ```
 
 *Pour quitter le screen tapez CTRL+A puis D*
+
+### Connexion
+
+Les identifiants lors de la première connexion sont :
+Login : Fondator
+Mot de passe : password
+
+**Changez les dès la première connexion !**
 
 ## Credits
 
