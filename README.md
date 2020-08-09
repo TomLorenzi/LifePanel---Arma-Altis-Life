@@ -230,3 +230,13 @@ I worked from the base of a school project that i modified for myself and this p
 I used https://github.com/robinjulien/Leloux from https://github.com/robinjulien
 
 Login Page and Home page are from a Template From ColorLib modified by me.
+
+## Screens
+
+<img src="screens\index.PNG" alt="index" style="zoom: 33%;" />
+
+<img src="screens\player_list.PNG" alt="index" style="zoom: 50%;" />
+
+<img src="screens\player_modify.PNG" alt="index" style="zoom: 50%;" />
+
+<img src="screens\user_modify.PNG" alt="index" style="zoom: 50%;" />
