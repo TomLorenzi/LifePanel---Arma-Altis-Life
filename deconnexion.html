@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LifePanel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="./js/leloux.js"></script>
+    <script>
+        l.requests.make("GET","/api/users/sessions/del", {
+            query: {
+                    token: encodeURIComponent(sessionStorage.getItem("token"))
+                }
+        }).then(data => {
+            window.location.href = './index.html'
+        })
+
+        sessionStorage.removeItem("login")
+        sessionStorage.removeItem("id")
+        sessionStorage.removeItem("token")
+        sessionStorage.removeItem("perms")
+        
+    </script>
+
+    
+</head>
+<!--Made by Nirawin / TomLorenzi-->
+</html>

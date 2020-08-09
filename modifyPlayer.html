@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LifePanel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <script src="/js/verifconn.js"></script>
+    <script type="text/babel" src="/js/verifadmin.js"></script>
+    
+</head>
+<body>
+    <!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+        <div class="py-4 px-3 mb-4 bg-light">
+          <div class="media d-flex align-items-center">
+            <div class="media-body">
+              <h4 class="mb-1">Administration</h4>
+              <p class="font-weight-light text-muted mb-0">Player Panel</p>
+            </div>
+          </div>
+        </div>
+      
+        <p class="text-gray font-weight-bold text-uppercase px-3 medium pb-4 mb-0">Menu</p>
+      
+        <ul class="nav flex-column bg-white mb-0">
+          <li class="nav-item">
+            <a href="panel.html" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-home mr-3 text-primary fa-fw"></i>
+                      Home Page
+                  </a>
+          </li>
+          <li class="nav-item">
+            <a href="players.html" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-home mr-3 text-primary fa-fw"></i>
+                      Players list
+                  </a>
+          </li>
+          <li class="nav-item">
+            <a href="deconnexion.html" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-sign-in-alt  mr-3 text-primary fa-fw"></i>
+                    Disconnect
+            </a>
+          </li>  
+        </ul>
+      </div>
+      <!-- End vertical navbar -->
+      
+      
+      <!-- Page content holder -->
+      <div class="page-content p-5" id="content" >
+        <!-- Toggle button -->
+        <button style="font-size: 15px" id="sidebarCollapse" type="button" class="btn btn-light bg-black rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small style="font-size: 15px"class="text-uppercase font-weight-bold">Show menu</small></button>
+        <!-- Demo content -->
+        <h2 class="display-4 text-black">Player Panel</h2>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12 ">
+                <!-- Timeline -->
+                <ul class="timeline" id="stimeline">
+                  <form id="changeCash">
+                    <div class="form-group">
+                      <label for="inputCash">Change Cash</label>
+                      <input type="number" autocomplete="off" required class="form-control" id="inputCash">
+                    </div>
+                    <button class="btn btn-primary">Update Cash</button>
+                  </form>
+                  <form id="changeBank">
+                    <div class="form-group">
+                      <label for="inputBank">Change Bank</label>
+                      <input type="number" autocomplete="off" required class="form-control" id="inputBank">
+                    </div>
+                    <button class="btn btn-primary">Update Bank</button>
+                  </form>
+                  <form id="changeCop">
+                    <div class="form-group">
+                      <label for="inputCop">Cop Level :</label>
+                      <select id="inputCop" name="inputCop" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                      </select>
+                    </div>
+                    <button class="btn btn-primary">Update Cop Level</button>
+                  </form>
+                  <form id="changeMedic">
+                    <div class="form-group">
+                      <label for="inputMedic">Medic Level :</label>
+                      <select id="inputMedic" name="inputMedic" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                    <button class="btn btn-primary">Update Medic Level</button>
+                  </form>
+                  <form id="changeDonor">
+                    <div class="form-group">
+                      <label for="inputDonor">Donor Level :</label>
+                      <select id="inputDonor" name="inputDonor" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                    <button class="btn btn-primary">Update Donor Level</button>
+                  </form>
+                  <form id="changeAdmin">
+                    <div class="form-group">
+                      <label for="inputAdmin">Admin Level :</label>
+                      <select id="inputAdmin" name="inputAdmin" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                    <button class="btn btn-primary">Update Admin Level</button>
+                  </form>
+                </ul>
+                  <!-- End -->
+            </div>
+        </div>
+      </div>
+      <!-- End demo content -->
+
+      <!-- React fichier source -->
+      <script src="./js/react.development.js" ></script>
+      <script src="./js/react-dom.development.js" ></script>
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js" ></script>
+
+      <script src="./js/leloux.js"></script>
+
+      <script src="./js/players.js" type="text/babel"></script>
+
+
+
+    <script>
+        $(function() {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+	  </script>
+	
+	<script type="text/babel">
+    // Dynamic gen with player selected
+    function $_GET(param) {
+      var vars = {};
+      window.location.href.replace( location.hash, '' ).replace( 
+        /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+        function( m, key, value ) { // callback
+          vars[key] = value !== undefined ? value : '';
+        }
+      );
+
+      if ( param ) {
+        return vars[param] ? vars[param] : null;	
+      }
+      return vars;
+    }
+
+    l.requests.makej("GET", "/api/players/id/" + $_GET("idPlayer"), {
+      query: {
+					token : encodeURIComponent(sessionStorage.getItem("token")),
+          login : encodeURIComponent(sessionStorage.getItem("login"))
+      } }).then(data => {
+        var element = document.createElement("div")
+        document.querySelector("#stimeline").appendChild(element)
+        var players = ""
+        if(data.players == null){
+            players = "No player with this ID"
+        } else {
+          for (var i = 0; i < data.players.length; i++) {
+                var element = document.createElement("div")
+                document.querySelector("#stimeline").appendChild(element)
+                ReactDOM.render(<Players playerId = {data.players[i].uid} pPid = {data.players[i].pid} pName = {data.players[i].name} pcash={data.players[i].cash} pbank={data.players[i].bank} pcoplevel={data.players[i].copLevel} pmediclevel={data.players[i].medicLevel} pdonorlevel={data.players[i].donorLevel} padminlevel={data.players[i].adminLevel}/>, element);
+            }
+        }
+    })
+
+    document.getElementById("changeCash").addEventListener(
+        "submit",
+        (e) => {
+          e.preventDefault();
+          l.requests.makej("GET", "/api/players/changecash", {
+            query: {
+              token: encodeURIComponent(sessionStorage.getItem("token")),
+              login: encodeURIComponent(sessionStorage.getItem("login")),
+              cash: encodeURIComponent(document.getElementById("inputCash").value),
+              playerID: encodeURIComponent($_GET("idPlayer"))
+            }
+          }).then(data => {
+            if (data.status != 1) {
+              alert("Error")
+            } else {
+              window.location.reload()
+            }
+          })
+        }
+      );
+
+    document.getElementById("changeBank").addEventListener(
+        "submit",
+        (e) => {
+          e.preventDefault();
+          l.requests.makej("GET", "/api/players/changebank", {
+            query: {
+              token: encodeURIComponent(sessionStorage.getItem("token")),
+              login: encodeURIComponent(sessionStorage.getItem("login")),
+              bank: encodeURIComponent(document.getElementById("inputBank").value),
+              playerID: encodeURIComponent($_GET("idPlayer"))
+            }
+          }).then(data => {
+            if (data.status != 1) {
+              alert("Error")
+            } else {
+              window.location.reload()
+            }
+          })
+        }
+      );
+
+    document.getElementById("changeCop").addEventListener(
+      "submit",
+      (e) => {
+        e.preventDefault();
+        l.requests.makej("GET", "/api/players/changecop", {
+          query: {
+            token: encodeURIComponent(sessionStorage.getItem("token")),
+            login: encodeURIComponent(sessionStorage.getItem("login")),
+            cop: encodeURIComponent(document.getElementById("inputCop").value),
+            playerID: encodeURIComponent($_GET("idPlayer"))
+          }
+        }).then(data => {
+          if (data.status != 1) {
+            alert("Error")
+          } else {
+            window.location.reload()
+          }
+        })
+      }
+    );
+
+
+    document.getElementById("changeMedic").addEventListener(
+        "submit",
+        (e) => {
+          e.preventDefault();
+          l.requests.makej("GET", "/api/players/changemedic", {
+            query: {
+              token: encodeURIComponent(sessionStorage.getItem("token")),
+              login: encodeURIComponent(sessionStorage.getItem("login")),
+              medic: encodeURIComponent(document.getElementById("inputMedic").value),
+              playerID: encodeURIComponent($_GET("idPlayer"))
+            }
+          }).then(data => {
+            if (data.status != 1) {
+              alert("Error")
+            } else {
+              window.location.reload()
+            }
+          })
+        }
+      );
+
+    document.getElementById("changeDonor").addEventListener(
+        "submit",
+        (e) => {
+          e.preventDefault();
+          l.requests.makej("GET", "/api/players/changedonor", {
+            query: {
+              token: encodeURIComponent(sessionStorage.getItem("token")),
+              login: encodeURIComponent(sessionStorage.getItem("login")),
+              donor: encodeURIComponent(document.getElementById("inputDonor").value),
+              playerID: encodeURIComponent($_GET("idPlayer"))
+            }
+          }).then(data => {
+            if (data.status != 1) {
+              alert("Error")
+            } else {
+              window.location.reload()
+            }
+          })
+        }
+      );
+
+    document.getElementById("changeAdmin").addEventListener(
+        "submit",
+        (e) => {
+          e.preventDefault();
+          l.requests.makej("GET", "/api/players/changeadmin", {
+            query: {
+              token: encodeURIComponent(sessionStorage.getItem("token")),
+              login: encodeURIComponent(sessionStorage.getItem("login")),
+              admin: encodeURIComponent(document.getElementById("inputAdmin").value),
+              playerID: encodeURIComponent($_GET("idPlayer"))
+            }
+          }).then(data => {
+            if (data.status != 1) {
+              alert("Error")
+            } else {
+              window.location.reload()
+            }
+          })
+        }
+      );
+  </script>
+
+<!--Made by Nirawin / TomLorenzi-->
+</body>
+</html>

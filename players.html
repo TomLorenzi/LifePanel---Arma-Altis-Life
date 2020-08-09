@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LifePanel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <script src="/js/verifconn.js"></script>
+    <script type="text/babel" src="/js/verifadmin.js"></script>
+    
+</head>
+<body>
+    <!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+        <div class="py-4 px-3 mb-4 bg-light">
+          <div class="media d-flex align-items-center">
+            <div class="media-body">
+              <h4 class="mb-1">Administration</h4>
+              <p class="font-weight-light text-muted mb-0">Player Panel</p>
+            </div>
+          </div>
+        </div>
+      
+        <p class="text-gray font-weight-bold text-uppercase px-3 medium pb-4 mb-0">Menu</p>
+      
+        <ul class="nav flex-column bg-white mb-0">
+          <li class="nav-item">
+            <a href="panel.html" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-home mr-3 text-primary fa-fw"></i>
+                      Home Page
+                  </a>
+          </li>
+          <li class="nav-item">
+            <a href="deconnexion.html" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-sign-in-alt  mr-3 text-primary fa-fw"></i>
+                    Disconnect
+            </a>
+          </li>  
+        </ul>
+      </div>
+      <!-- End vertical navbar -->
+      
+      
+      <!-- Page content holder -->
+      <div class="page-content p-5" id="content" >
+        <!-- Toggle button -->
+        <button style="font-size: 15px" id="sidebarCollapse" type="button" class="btn btn-light bg-black rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small style="font-size: 15px"class="text-uppercase font-weight-bold">Show menu</small></button>
+        <button style="font-size: 15px" id="sidebarCollapse" type="button" onclick="reset()" class="btn btn-light bg-black rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-trash mr-2"></i><small style="font-size: 15px"class="text-uppercase font-weight-bold">Reset research</small></button>
+        <!-- Demo content -->
+        <h2 class="display-4 text-black">Player Panel</h2>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12 ">
+                <!-- Timeline -->
+                <ul class="timeline" id="stimeline">
+                  <form id="searchName">
+                    <div class="form-group">
+                      <label for="inputName">Research by name</label>
+                      <input type="text" required minlength="3" class="form-control" id="inputName" placeholder="Name">
+                    </div>
+                    <button id="searchName" class="btn btn-default">Search by Name</button>
+                  </form>
+                  <form id="searchUid">
+                    <div class="form-group">
+                      <label for="inputUid">Research by uid</label>
+                      <input type="text" required pattern="[0-9]{17}" minlength="17" maxlength="17" class="form-control" id="inputUid" placeholder="UID">
+                    </div>
+                    <button id="searchUid" class="btn btn-default">Search by UID</button>
+                  </form>
+                </ul><!-- End -->
+            </div>
+        </div>
+      </div>
+      <!-- End demo content -->
+
+      <!-- React fichier source -->
+      <script src="./js/react.development.js" ></script>
+      <script src="./js/react-dom.development.js" ></script>
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js" ></script>
+
+      <script src="./js/leloux.js"></script>
+
+      <script src="./js/listPlayers.js" type="text/babel"></script>
+
+      <script type="text/babel">
+        //Search by name
+        document.getElementById("searchName").addEventListener(
+            "submit",
+            (e) => {
+              e.preventDefault();
+              l.requests.makej("GET", "/api/players/name", {
+              query: {
+                token : encodeURIComponent(sessionStorage.getItem("token")),
+                login : encodeURIComponent(sessionStorage.getItem("login")),
+                name : encodeURIComponent(document.getElementById("inputName").value)
+              }
+            }).then(data => {
+                if (data.players == null) {
+                  alert("No result")
+                } else {
+                  for (var i = 0; i < data.players.length; i++) {
+                    var element = document.createElement("div")
+                    document.querySelector("#stimeline").appendChild(element)
+                    ReactDOM.render(<ListPlayers playerId = {data.players[i].uid} pPid = {data.players[i].pid} pName = {data.players[i].name} pcash={data.players[i].cash} pbank={data.players[i].bank} pcoplevel={data.players[i].copLevel} pmediclevel={data.players[i].medicLevel} pdonorlevel={data.players[i].donorLevel} padminlevel={data.players[i].adminLevel}/>, element);
+                  }
+                }
+            })
+          }
+        );
+
+        //Search by UID
+        document.getElementById("searchUid").addEventListener(
+            "submit",
+            (e) => {
+              e.preventDefault();
+              l.requests.makej("GET", "/api/players/uid", {
+              query: {
+                token : encodeURIComponent(sessionStorage.getItem("token")),
+                login : encodeURIComponent(sessionStorage.getItem("login")),
+                uid : encodeURIComponent(document.getElementById("inputUid").value)
+              }
+            }).then(data => {
+              if (data.players == null) {
+                  alert("No result")
+                } else {
+                  for (var i = 0; i < data.players.length; i++) {
+                      var element = document.createElement("div")
+                      document.querySelector("#stimeline").appendChild(element)
+                      ReactDOM.render(<ListPlayers playerId = {data.players[i].uid} pPid = {data.players[i].pid} pName = {data.players[i].name} pcash={data.players[i].cash} pbank={data.players[i].bank} pcoplevel={data.players[i].copLevel} pmediclevel={data.players[i].medicLevel} pdonorlevel={data.players[i].donorLevel} padminlevel={data.players[i].adminLevel}/>, element);
+                  }
+                }
+            })
+          }
+        );
+      </script>
+
+
+
+    <script>
+        $(function() {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+        function reset() {
+          window.location.reload()
+        }
+	  </script>
+	
+	<script>
+    function addUser() {
+      window.location.href="/users.html"
+    }
+		function deleteUser(e) {
+			l.requests.makej("GET", "/api/users/del", {
+				query: {
+					token : encodeURIComponent(sessionStorage.getItem("token")),
+          login : encodeURIComponent(sessionStorage.getItem("login")),
+					id: e.target.getAttribute("data-hid")
+				}
+			}).then(data => {
+				if (data.status != 1) {
+          window.alert(data.message)
+				} else {
+					document.location.reload()
+				}
+			})
+		}
+	</script>
+
+<!--Made by Nirawin / TomLorenzi-->
+</body>
+</html>

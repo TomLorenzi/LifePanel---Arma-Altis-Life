@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LifePanel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <script src="/js/verifconn.js"></script>
+    <script type="text/babel" src="/js/veriffonda.js"></script>
+    
+</head>
+<body>
+    <!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+        <div class="py-4 px-3 mb-4 bg-light">
+          <div class="media d-flex align-items-center">
+            <div class="media-body">
+              <h4 class="mb-1">Administration</h4>
+              <p class="font-weight-light text-muted mb-0">User Panel</p>
+            </div>
+          </div>
+        </div>
+      
+        <p class="text-gray font-weight-bold text-uppercase px-3 medium pb-4 mb-0">Menu</p>
+      
+        <ul class="nav flex-column bg-white mb-0">
+          <li class="nav-item">
+            <a href="panel.html" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-home mr-3 text-primary fa-fw"></i>
+                      Home Page
+                  </a>
+          </li>
+          <li class="nav-item">
+            <a href="users.html" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-home mr-3 text-primary fa-fw"></i>
+                      Users list
+                  </a>
+          </li>
+          <li class="nav-item">
+            <a href="deconnexion.html" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-sign-in-alt  mr-3 text-primary fa-fw"></i>
+                    Disconnect
+            </a>
+          </li>  
+        </ul>
+      </div>
+      <!-- End vertical navbar -->
+      
+      
+      <!-- Page content holder -->
+      <div class="page-content p-5" id="content" >
+        <!-- Toggle button -->
+        <button style="font-size: 15px" id="sidebarCollapse" type="button" class="btn btn-light bg-black rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small style="font-size: 15px"class="text-uppercase font-weight-bold">Show menu</small></button>
+        <!-- Demo content -->
+        <h2 class="display-4 text-black">User Panel</h2>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12 ">
+                <!-- Timeline -->
+                <ul class="timeline" id="stimeline">
+                  <form id="changeLogin">
+                    <div class="form-group">
+                      <label for="inputLogin">Change Login</label>
+                      <input type="text" autocomplete="off" required minlength="3" class="form-control" id="inputLogin" placeholder="New Login">
+                    </div>
+                    <button class="btn btn-primary">New Login</button>
+                  </form>
+                  <form id="changePass">
+                    <div class="form-group">
+                      <label for="inputPass">Change Password</label>
+                      <input type="password" required minlength="1" maxlength="50" class="form-control" id="oldPass" placeholder="Current Password" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" autocomplete="off" required minlength="5" maxlength="50" class="form-control" id="inputPass" placeholder="New Password">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" autocomplete="off" required minlength="5" maxlength="50" class="form-control" id="verifPass" placeholder="Confirm password">
+                    </div>
+                    <button class="btn btn-primary">New Password</button>
+                  </form>
+                  <form id="changePerms">
+                    <div class="form-group">
+                      <label for="permsLevel">Permissions Level :</label>
+                      <select id="permsLevel" name="permsLevel" class="form-control">
+                        <option value="1">Fondator</option>
+                        <option value="2">Admin</option>
+                        <option value="3">Moderator</option>
+                      </select>
+                    </div>
+                    <button class="btn btn-primary">Change user's permissions</button>
+                  </form>
+                </ul>
+                  <!-- End -->
+            </div>
+        </div>
+      </div>
+      <!-- End demo content -->
+
+      <!-- React fichier source -->
+      <script src="./js/react.development.js" ></script>
+      <script src="./js/react-dom.development.js" ></script>
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js" ></script>
+
+      <script src="./js/leloux.js"></script>
+
+      <script src="./js/users.js" type="text/babel"></script>
+
+
+
+    <script>
+        $(function() {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+	  </script>
+	
+	<script type="text/babel">
+    // Dynamic gen with user selected
+    function $_GET(param) {
+      var vars = {};
+      window.location.href.replace( location.hash, '' ).replace( 
+        /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+        function( m, key, value ) { // callback
+          vars[key] = value !== undefined ? value : '';
+        }
+      );
+
+      if ( param ) {
+        return vars[param] ? vars[param] : null;	
+      }
+      return vars;
+    }
+
+    l.requests.makej("GET", "/api/users/id/" + $_GET("idUser"), {
+      query: {
+					token : encodeURIComponent(sessionStorage.getItem("token")),
+          login : encodeURIComponent(sessionStorage.getItem("login"))
+      } }).then(data => {
+        var element = document.createElement("div")
+        document.querySelector("#stimeline").appendChild(element)
+        var users = ""
+        if(data.users == null){
+            users = "No user with this ID"
+        } else {
+          for (var i = 0; i < data.users.length; i++) {
+                var element = document.createElement("div")
+                document.querySelector("#stimeline").appendChild(element)
+                ReactDOM.render(<Users userId = {data.users[i].id} uLogin = {data.users[i].login} uperms={data.users[i].perms}/>, element);
+            }
+        }
+    })
+
+    document.getElementById("changeLogin").addEventListener(
+            "submit",
+            (e) => {
+              e.preventDefault();
+                l.requests.makej("GET", "/api/users/newlogin", {
+                  query: {
+                    token : encodeURIComponent(sessionStorage.getItem("token")),
+                    login : encodeURIComponent(sessionStorage.getItem("login")),
+                    newLogin : encodeURIComponent(document.getElementById("inputLogin").value),
+                    userID : encodeURIComponent($_GET("idUser"))
+                  }
+                }).then(data => {
+                    if (data.status != 1) {
+                      alert("Error")
+                    } else {
+                      window.location.reload()
+                    }
+                })
+          }
+        );
+
+      document.getElementById("changePass").addEventListener(
+            "submit",
+            (e) => {
+              e.preventDefault();
+              var pass1 = document.getElementById("inputPass").value
+              var pass2 = document.getElementById("verifPass").value
+              if (pass1 != pass2) {
+                alert("Password don't match")
+              } else {
+                l.requests.makej("GET", "/api/users/newpass", {
+                  query: {
+                    token : encodeURIComponent(sessionStorage.getItem("token")),
+                    login : encodeURIComponent(sessionStorage.getItem("login")),
+                    oldPass : encodeURIComponent(document.getElementById("oldPass").value),
+                    newPass : encodeURIComponent(document.getElementById("inputPass").value),
+                    userID : encodeURIComponent($_GET("idUser"))
+                  }
+                }).then(data => {
+                    if (data.status != 1) {
+                      alert("Error : " + data.message)
+                    } else {
+                      window.location.reload()
+                    }
+              })
+            }
+          }
+        );
+
+        document.getElementById("changePerms").addEventListener(
+            "submit",
+            (e) => {
+              e.preventDefault();
+                l.requests.makej("GET", "/api/users/newperm", {
+                  query: {
+                    token : encodeURIComponent(sessionStorage.getItem("token")),
+                    login : encodeURIComponent(sessionStorage.getItem("login")),
+                    newperms : encodeURIComponent(document.getElementById("permsLevel").value),
+                    userID : encodeURIComponent($_GET("idUser"))
+                  }
+                }).then(data => {
+                    if (data.status != 1) {
+                      alert("Error : " + data.message)
+                    } else {
+                      window.location.reload()
+                    }
+              })
+          }
+        );
+  </script>
+
+<!--Made by Nirawin / TomLorenzi-->
+</body>
+</html>
