@@ -46,7 +46,8 @@ class ListPlayers extends React.Component {
                     </tbody>
                 </table> 
                 <p className="lead mt-4">
-                <a className="btn btn-primary btn-sm" href={"./modifyPlayer.html?idPlayer=" + this.props.pPid} role="button">Modify player</a>
+                  <a className="btn btn-primary btn-sm" href={"./modifyPlayer.html?idPlayer=" + this.props.pPid} role="button">Modify player</a>
+                  <a className="btn btn-primary btn-sm" href={"https://steamcommunity.com/profiles/" + this.props.pPid} role="button">Check Steam</a>
                 </p>
               </div>
             </div>

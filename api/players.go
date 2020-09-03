@@ -274,6 +274,15 @@ func changeCash(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		return
 	}
 
+	action := "Changed cash to value : " + cash
+
+	_, err = db.Exec("INSERT INTO logs (player, action, admin) VALUES (?, ?, ?)", playerID, action, r.FormValue("login"))
+
+	if err != nil {
+		fmt.Println("Error :", err)
+		return
+	}
+
 	db.Close()
 
 	res := APIResponse{Status: 1, Message: "ok"}
@@ -310,6 +319,15 @@ func changeBank(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	bank := r.FormValue("bank")
 
 	_, err = db.Exec("UPDATE players SET bankacc = ? WHERE pid = ?", bank, playerID)
+
+	if err != nil {
+		fmt.Println("Error :", err)
+		return
+	}
+
+	action := "Changed bank to value : " + bank
+
+	_, err = db.Exec("INSERT INTO logs (player, action, admin) VALUES (?, ?, ?)", playerID, action, r.FormValue("login"))
 
 	if err != nil {
 		fmt.Println("Error :", err)
@@ -358,6 +376,15 @@ func changeCop(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		return
 	}
 
+	action := "Changed copLevel to level : " + cop
+
+	_, err = db.Exec("INSERT INTO logs (player, action, admin) VALUES (?, ?, ?)", playerID, action, r.FormValue("login"))
+
+	if err != nil {
+		fmt.Println("Error :", err)
+		return
+	}
+
 	db.Close()
 
 	res := APIResponse{Status: 1, Message: "ok"}
@@ -394,6 +421,15 @@ func changeMedic(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	medic := r.FormValue("medic")
 
 	_, err = db.Exec("UPDATE players SET mediclevel = ? WHERE pid = ?", medic, playerID)
+
+	if err != nil {
+		fmt.Println("Error :", err)
+		return
+	}
+
+	action := "Changed medicLevel to level : " + medic
+
+	_, err = db.Exec("INSERT INTO logs (player, action, admin) VALUES (?, ?, ?)", playerID, action, r.FormValue("login"))
 
 	if err != nil {
 		fmt.Println("Error :", err)
@@ -442,6 +478,15 @@ func changeDonor(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		return
 	}
 
+	action := "Changed donorLevel to level : " + donor
+
+	_, err = db.Exec("INSERT INTO logs (player, action, admin) VALUES (?, ?, ?)", playerID, action, r.FormValue("login"))
+
+	if err != nil {
+		fmt.Println("Error :", err)
+		return
+	}
+
 	db.Close()
 
 	res := APIResponse{Status: 1, Message: "ok"}
@@ -478,6 +523,15 @@ func changeAdmin(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	admin := r.FormValue("admin")
 
 	_, err = db.Exec("UPDATE players SET adminlevel = ? WHERE pid = ?", admin, playerID)
+
+	if err != nil {
+		fmt.Println("Error :", err)
+		return
+	}
+
+	action := "Changed adminLevel to level : " + admin
+
+	_, err = db.Exec("INSERT INTO logs (player, action, admin) VALUES (?, ?, ?)", playerID, action, r.FormValue("login"))
 
 	if err != nil {
 		fmt.Println("Error :", err)

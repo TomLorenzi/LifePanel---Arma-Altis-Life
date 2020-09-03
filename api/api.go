@@ -52,6 +52,8 @@ func main() {
 	router.GET("/players/changedonor", changeDonor) //Protected by auth
 	router.GET("/players/changeadmin", changeAdmin) //Protected by auth
 
+	router.GET("/logs", listLogs) //Protected by auth
+
 	http.ListenAndServe(":8080", router)
 }
 

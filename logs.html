@@ -49,10 +49,10 @@
                   </a>
           </li>
           <li class="nav-item">
-            <a href="logs.html" class="nav-link text-dark font-italic bg-light">
-                    <i class="fas fa-list mr-3 text-primary fa-fw"></i>
-                      Logs
-                  </a>
+            <a href="players.html" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-users  mr-3 text-primary fa-fw"></i>
+                    Player list
+            </a>
           </li>
           <li class="nav-item">
             <a href="deconnexion.html" class="nav-link text-dark font-italic bg-light">
@@ -77,20 +77,6 @@
             <div class="col-lg-12 ">
                 <!-- Timeline -->
                 <ul class="timeline" id="stimeline">
-                  <form id="searchName">
-                    <div class="form-group">
-                      <label for="inputName">Research by name</label>
-                      <input type="text" required minlength="3" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                    <button id="searchName" class="btn btn-primary">Search by Name</button>
-                  </form>
-                  <form id="searchUid">
-                    <div class="form-group">
-                      <label for="inputUid">Research by uid</label>
-                      <input type="text" required pattern="[0-9]{17}" minlength="17" maxlength="17" class="form-control" id="inputUid" placeholder="UID">
-                    </div>
-                    <button id="searchUid" class="btn btn-primary">Search by UID</button>
-                  </form>
                 </ul><!-- End -->
             </div>
         </div>
@@ -104,59 +90,7 @@
 
       <script src="./js/leloux.js"></script>
 
-      <script src="./js/listPlayers.js" type="text/babel"></script>
-
-      <script type="text/babel">
-        //Search by name
-        document.getElementById("searchName").addEventListener(
-            "submit",
-            (e) => {
-              e.preventDefault();
-              l.requests.makej("GET", "/api/players/name", {
-              query: {
-                token : encodeURIComponent(sessionStorage.getItem("token")),
-                login : encodeURIComponent(sessionStorage.getItem("login")),
-                name : encodeURIComponent(document.getElementById("inputName").value)
-              }
-            }).then(data => {
-                if (data.players == null) {
-                  alert("No result")
-                } else {
-                  for (var i = 0; i < data.players.length; i++) {
-                    var element = document.createElement("div")
-                    document.querySelector("#stimeline").appendChild(element)
-                    ReactDOM.render(<ListPlayers playerId = {data.players[i].uid} pPid = {data.players[i].pid} pName = {data.players[i].name} pcash={data.players[i].cash} pbank={data.players[i].bank} pcoplevel={data.players[i].copLevel} pmediclevel={data.players[i].medicLevel} pdonorlevel={data.players[i].donorLevel} padminlevel={data.players[i].adminLevel}/>, element);
-                  }
-                }
-            })
-          }
-        );
-
-        //Search by UID
-        document.getElementById("searchUid").addEventListener(
-            "submit",
-            (e) => {
-              e.preventDefault();
-              l.requests.makej("GET", "/api/players/uid", {
-              query: {
-                token : encodeURIComponent(sessionStorage.getItem("token")),
-                login : encodeURIComponent(sessionStorage.getItem("login")),
-                uid : encodeURIComponent(document.getElementById("inputUid").value)
-              }
-            }).then(data => {
-              if (data.players == null) {
-                  alert("No result")
-                } else {
-                  for (var i = 0; i < data.players.length; i++) {
-                      var element = document.createElement("div")
-                      document.querySelector("#stimeline").appendChild(element)
-                      ReactDOM.render(<ListPlayers playerId = {data.players[i].uid} pPid = {data.players[i].pid} pName = {data.players[i].name} pcash={data.players[i].cash} pbank={data.players[i].bank} pcoplevel={data.players[i].copLevel} pmediclevel={data.players[i].medicLevel} pdonorlevel={data.players[i].donorLevel} padminlevel={data.players[i].adminLevel}/>, element);
-                  }
-                }
-            })
-          }
-        );
-      </script>
+      <script src="./js/listLogs.js" type="text/babel"></script>
 
 
 
@@ -171,7 +105,24 @@
         function reset() {
           window.location.reload()
         }
-	  </script>
+    </script>
+    
+    <script type="text/babel">
+      l.requests.makej("GET", "/api/logs", {
+      query: {
+					token : encodeURIComponent(sessionStorage.getItem("token")),
+          login : encodeURIComponent(sessionStorage.getItem("login"))
+      } }).then(data => {
+        var element = document.createElement("div")
+        document.querySelector("#stimeline").appendChild(element)
+        var logs = ""
+          for (var i = 0; i < data.logs.length; i++) {
+                var element = document.createElement("div")
+                document.querySelector("#stimeline").appendChild(element)
+                ReactDOM.render(<Logs lId = {data.logs[i].id} lPlayer = {data.logs[i].player} lAction = {data.logs[i].action} lAdmin={data.logs[i].admin} lDate={data.logs[i].date}/>, element);
+            }
+    })
+    </script>
 
 <!--Made by Nirawin / TomLorenzi-->
 </body>
