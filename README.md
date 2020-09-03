@@ -27,7 +27,7 @@ export PATH=$PATH:/usr/local/go/bin
 source /etc/profile
 ```
 
-You've just install GO
+You've just installed GO
 
 #### Pull for github
 
