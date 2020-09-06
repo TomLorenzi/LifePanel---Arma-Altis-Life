@@ -64,6 +64,16 @@ REPLACE INTO `users` (`id`, `login`, `hashPass`, `perms`) VALUES
 	(1, 'Fondator', '$2y$10$cwWtrGHzZulJe/XmCV3ucOyoruOEJwr8MjaimoVL5/TPDGPlX1miq', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
+-- Listage de la structure de la table altislife. logs
+CREATE TABLE IF NOT EXISTS `logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `player` varchar(17) NOT NULL,
+  `action` text NOT NULL DEFAULT '',
+  `admin` varchar(255) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
