@@ -1,6 +1,11 @@
 # LifePanel
 Online panel for the base Altis Life framework
 
+Can be tested here : https://www.altasia.fr
+With : 
+**User :** Test
+**Pass :** password
+
 ## EN
 
 ### How to install
