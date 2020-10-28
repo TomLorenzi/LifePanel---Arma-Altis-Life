@@ -1,7 +1,7 @@
 # LifePanel
 Online panel for the base Altis Life framework
 
-Can be tested here : https://www.altasia.fr
+Can be tested here : https://www.thomasdl.fr/LifePanel
 With : 
 **User :** Test
 **Pass :** password
